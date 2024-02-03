@@ -1,0 +1,34 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Expectativas_de_Mercado_Mensais.WPF"
+        xmlns:ScottPlot="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
+        xmlns:Specialized="clr-namespace:System.Collections.Specialized;assembly=System.Collections.Specialized" x:Class="Expectativas_de_Mercado_Mensais.WPF.MainWindow"
+        mc:Ignorable="d"        
+        Title="Expectativas de Mercado Mensais" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="381*"/>
+            <ColumnDefinition Width="419*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="98"/>
+            <RowDefinition Height="Auto" MinHeight="320" Name="Row2"/>
+        </Grid.RowDefinitions>
+        <Label Content="Período" HorizontalAlignment="Left" Margin="3,1,0,0" VerticalAlignment="Top" Height="26" Width="51" Grid.Column="0" Grid.Row="0" />
+        <DatePicker x:Name="DpInicio" Margin="8,25,0,0" SelectedDate="{x:Null}" DisplayDateStart="2000-01-01" DisplayDateEnd="2025-12-31" ToolTip="Período Inicial para pesquisa de dos dados" Width="138" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Grid.Column="0" Grid.Row="0"/>
+        <DatePicker x:Name="DpFim" Margin="8,55,0,0" SelectedDate="{x:Null}" DisplayDateStart="2000-01-01" DisplayDateEnd="2025-12-31" ToolTip="Período Inicial para pesquisa de dos dados"  Width="138" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Grid.Column="0" Grid.Row="0" />
+        <Label Content="Indicador&#xD;&#xA;" HorizontalAlignment="Left" Margin="153,1,0,0" VerticalAlignment="Top"   Height="26" Width="64" Grid.Column="0" Grid.Row="0"/>
+        <ComboBox x:Name="CboIndicador" HorizontalAlignment="Left" Margin="158,27,0,0" VerticalAlignment="Top" Width="119" Height="22" SelectedIndex="0" Grid.Column="0" Grid.Row="0" >
+            <ComboBoxItem Content="IPCA" />
+            <ComboBoxItem Content="IGP-M" />
+            <ComboBoxItem Content="Taxa Selic" />
+        </ComboBox>
+        <Button x:Name="BtnPesquisar" Content="Pesquisar" HorizontalAlignment="Left" Margin="282,17,0,0" VerticalAlignment="Top" Height="32" Width="86" RenderTransformOrigin="3.731,-0.217" Grid.Column="0" Grid.Row="0" Click="BtnPesquisar_Click" />
+        <ScottPlot:WpfPlot x:Name="WpfPlot1" Grid.Column="1" Grid.Row="0"/>
+        <Border x:Name="RowContainer" Grid.Row="1" Visibility="Visible" Grid.ColumnSpan="2"  SizeChanged="Row_SizeChanged"  />
+        <Grid x:Name="DgExpectativaMercadoMensal" Margin="5,0,5,5" Height="334" Width="Auto" Background="Black" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="2" />
+    </Grid>
+</Window>
