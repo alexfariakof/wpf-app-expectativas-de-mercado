@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 namespace Expectativas_de_Mercado.ViewModel;
 public class IndicadorViewModel 
 {
-    public Indicador Indicador { get; set; } = new Indicador();
     public ObservableCollection<Indicador> Indicadores { get; set; }    
     public IndicadorViewModel()  {
         Indicadores = new ObservableCollection<Indicador>();

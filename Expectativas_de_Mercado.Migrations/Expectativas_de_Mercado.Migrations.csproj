@@ -6,12 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove=".gitKepp" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include=".gitKepp" />
-  </ItemGroup>
-
 </Project>
