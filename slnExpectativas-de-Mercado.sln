@@ -19,6 +19,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expectativas_de_Mercado.Mig
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expectativas_de_Mercado.XUnit", "Expectativas_de_Mercado.XUnit\Expectativas_de_Mercado.XUnit.csproj", "{5F4762BC-9388-4FDB-9FCC-B6C238B16985}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B5A5EA45-1FAD-4AE3-9A8E-8ADFCC543567}"
+	ProjectSection(SolutionItems) = preProject
+		dotnet_test_watch_mode.ps1 = dotnet_test_watch_mode.ps1
+		generate_coverage_report.ps1 = generate_coverage_report.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

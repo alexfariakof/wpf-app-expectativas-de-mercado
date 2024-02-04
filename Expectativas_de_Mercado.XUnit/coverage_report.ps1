@@ -1,6 +1,6 @@
 $projectTestPath = Get-Location
 $projectPath =  (Resolve-Path -Path ..).Path
-$sourceDirs = "$projectPath\Expectativas_de_Mercado.ViewModel;$projectPath\Expectativas_de_Mercado.Repository;$projectPath\Expectativas_de_Mercado.Model;"
+$sourceDirs = "$projectPath\Expectativas_de_Mercado.ViewModel;$projectPath\Expectativas_de_Mercado.Repository;$projectPath\Expectativas_de_Mercado.Model;$projectPath\Bacen.Integration;"
 $reportPath = Join-Path -Path $projectTestPath -ChildPath "TestResults"
 $coverageXmlPath = Join-Path -Path (Join-Path -Path $projectTestPath -ChildPath "TestResults") -ChildPath "coveragereport"
 
