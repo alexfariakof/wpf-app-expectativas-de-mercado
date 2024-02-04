@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Bacen.Integration\Bacen.Integration.csproj" />
     <ProjectReference Include="..\Expectativas_de_Mercado.Model\Expectativas_de_Mercado.Model.csproj" />
     <ProjectReference Include="..\Expectativas_de_Mercado.Repository\Expectativas_de_Mercado.Repository.csproj" />
     <ProjectReference Include="..\Expectativas_de_Mercado.ViewModel\Expectativas_de_Mercado.ViewModel.csproj" />

@@ -14,4 +14,12 @@
     <Compile Include=".gitKepp" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Expectativas_de_Mercado.Model\Expectativas_de_Mercado.Model.csproj" />
+  </ItemGroup>
+
 </Project>
