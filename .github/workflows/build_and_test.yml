@@ -34,7 +34,7 @@ jobs:
       uses: actions/setup-dotnet@v3
       if: steps.dotnet-cache.outputs.cache-hit != 'true'
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 8.0.x
     
     - name: Build and Restore App 
       run: dotnet build  ./Expectativas_de_Mercado.WPF/Expectativas_de_Mercado.WPF.csproj --restore
