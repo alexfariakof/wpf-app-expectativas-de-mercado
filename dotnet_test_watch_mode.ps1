@@ -2,7 +2,7 @@ cls
 
 $baseDirectory = Join-Path -Path (Get-Location) -ChildPath ""
 $projectTestPath = Join-Path -Path (Get-Location) -ChildPath "Expectativas_de_Mercado.XUnit"
-$sourceDirs = "$baseDirectory\Expectativas_de_Mercado.ViewModel;$baseDirectory\Expectativas_de_Mercado.Repository;$baseDirectory\Expectativas_de_Mercado.Model;"
+$sourceDirs = "$baseDirectory\Expectativas_de_Mercado.ViewModel;$baseDirectory\Expectativas_de_Mercado.Repository;$baseDirectory\Expectativas_de_Mercado.Model;$baseDirectory\Bacen.Integration;"
 $reportPath = Join-Path -Path (Get-Location) -ChildPath "Expectativas_de_Mercado.XUnit\TestResults"
 $coverageXmlPath = Join-Path -Path (Join-Path -Path $projectTestPath -ChildPath "TestResults") -ChildPath "coveragereport"
 
