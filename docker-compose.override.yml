@@ -1,0 +1,7 @@
+version: '3.4'
+
+services:
+  expectativas-de-mercado-wpf:
+    environment:
+      DOTNET_RUNNING_IN_CONTAINER: true
+      DOTNET_VERSION: 8.0

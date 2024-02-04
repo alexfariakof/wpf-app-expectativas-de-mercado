@@ -1,8 +1,8 @@
-﻿<Application x:Class="Expectativas_de_Mercado_Mensais.WPF.App"
+﻿<Application x:Class="Expectativas_de_Mercado.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Expectativas_de_Mercado_Mensais.WPF"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:Expectativas_de_Mercado.WPF"
+             StartupUri="View/MainWindow.xaml">
     <Application.Resources>
 
     </Application.Resources>

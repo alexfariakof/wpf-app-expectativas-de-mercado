@@ -1,0 +1,7 @@
+version: '3.4'
+services:
+  expectativas-de-mercado-wpf:
+    image: ${DOCKER_REGISTRY-}expectativas-de-mercado-wpf-img
+    build:
+      context: .
+      dockerfile: ./Expectativas_de_Mercado.WPF/Dockerfile
