@@ -11,6 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expectativas_de_Mercado.Vie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expectativas_de_Mercado.WPF", "Expectativas_de_Mercado.WPF\Expectativas_de_Mercado.WPF.csproj", "{009ED4C4-7FD3-497F-8508-3DBB8484A52B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expectativas_de_Mercado.Repository", "Expectativas_de_Mercado.Repository\Expectativas_de_Mercado.Repository.csproj", "{577ACD9F-0C80-4D00-8669-9E124ED8169C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bacen.Integration", "Bacen.Integration\Bacen.Integration.csproj", "{F28712E8-DF52-4639-8186-D0A3D3443A81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expectativas_de_Mercado.Migrations", "Expectativas_de_Mercado.Migrations\Expectativas_de_Mercado.Migrations.csproj", "{6A5BF97D-0199-46F5-9C2A-C4D09957E1BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +39,18 @@ Global
 		{009ED4C4-7FD3-497F-8508-3DBB8484A52B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{009ED4C4-7FD3-497F-8508-3DBB8484A52B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{009ED4C4-7FD3-497F-8508-3DBB8484A52B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{577ACD9F-0C80-4D00-8669-9E124ED8169C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{577ACD9F-0C80-4D00-8669-9E124ED8169C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{577ACD9F-0C80-4D00-8669-9E124ED8169C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{577ACD9F-0C80-4D00-8669-9E124ED8169C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F28712E8-DF52-4639-8186-D0A3D3443A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F28712E8-DF52-4639-8186-D0A3D3443A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F28712E8-DF52-4639-8186-D0A3D3443A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F28712E8-DF52-4639-8186-D0A3D3443A81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A5BF97D-0199-46F5-9C2A-C4D09957E1BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A5BF97D-0199-46F5-9C2A-C4D09957E1BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A5BF97D-0199-46F5-9C2A-C4D09957E1BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A5BF97D-0199-46F5-9C2A-C4D09957E1BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
