@@ -1,0 +1,53 @@
+name: Build and Test
+on:
+  workflow_call:
+
+  push:
+    branches: 
+      - main 
+      - develop
+ 
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:       
+      - main
+
+permissions:
+    contents: read 
+
+jobs:
+  build_and_test_net:
+    name: Build and Test .Net App
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Cache .NET packages    
+      uses: actions/cache@v3
+      id: dotnet-cache
+      with:
+        path: ~/.nuget/packages
+        key: dotnet-packages-${{ github.repository }}
+        restore-keys: dotnet-packages-${{ github.repository }}
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      if: steps.dotnet-cache.outputs.cache-hit != 'true'
+      with:
+        dotnet-version: 8.0.x
+    
+    - name: Build and Restore App 
+      run: dotnet build  ./Expectativas_de_Mercado.WPF/Expectativas_de_Mercado.WPF.csproj --restore
+      continue-on-error: false
+
+    - name: Test .Net App
+      run: | 
+          dotnet tool install -g dotnet-reportgenerator-globaltool 
+          dotnet test ./Expectativas_de_Mercado.XUnit/Expectativas_de_Mercado.XUnit.csproj
+      continue-on-error: false
+
+  trigger_tests_sonarcloud:
+    needs: build_and_test_angular
+    name: Triggered Build and Test
+    uses: alexfariakof/BACEN-Expectativas-de-Mercado/.github/workflows/test_analyse_in_Sonar_Cloud.yml@main
+    secrets: inherit
