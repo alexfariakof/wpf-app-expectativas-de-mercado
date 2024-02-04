@@ -1,15 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="coverlet.msbuild" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
@@ -22,4 +25,20 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Expectativas_de_Mercado.Model\Expectativas_de_Mercado.Model.csproj" />
+    <ProjectReference Include="..\Expectativas_de_Mercado.Repository\Expectativas_de_Mercado.Repository.csproj" />
+    <ProjectReference Include="..\Expectativas_de_Mercado.ViewModel\Expectativas_de_Mercado.ViewModel.csproj" />
+  </ItemGroup>
+  <PropertyGroup>
+    <TestDependsOn>
+      AfterTest;
+    </TestDependsOn>
+  </PropertyGroup>
+
+  <Target Name="Test" AfterTargets="Build;Rebuild" DependsOnTargets="$(TestDependsOn)" />
+  <Target Name="AfterTest">
+    <!-- Check if OS is Windows -->
+    <Exec Condition="'$(OS)' == 'Windows_NT'" Command="powershell -File ./coverage_report.ps1" />
+  </Target>
 </Project>
