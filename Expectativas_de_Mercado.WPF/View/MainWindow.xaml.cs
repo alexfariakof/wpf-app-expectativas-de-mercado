@@ -1,10 +1,11 @@
-﻿using Expectativas_de_Mercado.ViewModel;
+﻿using Expectativas_de_Mercado.Model.Core;
+using Expectativas_de_Mercado.ViewModel;
 using System.Windows;
 
 namespace Expectativas_de_Mercado.WPF;
 public partial class MainWindow : Window
 {
-    private readonly ExpectativasMercadoMensalViewModel viewModel;
+    private ExpectativasMercadoMensalViewModel viewModel;
     public MainWindow()
     {
         InitializeComponent();
@@ -16,6 +17,9 @@ public partial class MainWindow : Window
     }
     private void BtnPesquisar_Click(object sender, RoutedEventArgs e)
     {
+        var indicadorSelecionado = (Indicador)CboIndicador.SelectedItem;
+        this.viewModel = new ExpectativasMercadoMensalViewModel(indicadorSelecionado,  DpInicio.SelectedDate.Value, DpFim.SelectedDate.Value);
+        this.DgExpectativaMercadoMensal.DataContext = viewModel;
     }
     private void DpInicio_SelectedDateChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
     {
