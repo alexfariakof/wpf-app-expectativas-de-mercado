@@ -1,6 +1,8 @@
 ﻿using Expectativas_de_Mercado.Model.Core;
 using Expectativas_de_Mercado.ViewModel;
 using Expectativas_de_Mercado.WPF.View;
+using System.IO;
+using System.Text;
 using System.Windows;
 
 namespace Expectativas_de_Mercado.WPF;
@@ -16,8 +18,10 @@ public partial class MainWindow : Window
         this.DgExpectativaMercadoMensal.DataContext = viewModel;
         this.BtnPesquisar.Click += this.BtnPesquisar_Click;
         this.BtnGrafico.Click += this.BtnGrafico_Click;
-
+        this.CboIndicador.SelectionChanged += this.CboIndicador_SelectionChanged;
+        this.BtnExportar.Click += this.BtnExportar_Click;
     }
+
     private void BtnPesquisar_Click(object sender, RoutedEventArgs e)
     {
         var indicadorSelecionado = (Indicador)CboIndicador.SelectedItem;
@@ -36,7 +40,59 @@ public partial class MainWindow : Window
         };
 
         page.ShowGrafico();
-        window.ShowDialog();
-        
+        window.ShowDialog();        
+    }
+
+    private void BtnExportar_Click(object sender, RoutedEventArgs e)
+    {
+        var indicadorSelecionado = (Indicador)CboIndicador.SelectedItem;
+        var formattedDtInicial = DpInicio.SelectedDate.Value.ToString("yyyy-MM-dd");
+        var formattedDtFinal = DpFim.SelectedDate.Value.ToString("yyyy-MM-dd");
+
+        if (viewModel.ExpectativasMercadoMensais == null || viewModel.ExpectativasMercadoMensais.Count == 0)
+        {
+            MessageBox.Show("Não há dados para exportar.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+        {
+            Filter = "Arquivo CSV (*.csv)|*.csv",
+            FileName = $"{indicadorSelecionado.Descricao}_{formattedDtInicial}_{formattedDtFinal}" 
+        };
+
+        if (saveFileDialog.ShowDialog() == true)
+        {
+            try
+            {
+                using (var streamWriter = new StreamWriter(saveFileDialog.FileName, false, Encoding.UTF8))
+                {
+                    if (indicadorSelecionado.Id == Indicador_Id.Selic)
+                        streamWriter.WriteLine("Indicador;Data;Reunião;Média;Mediana;Desvio Padrão;Mínimo;Máximo;Número de Respondentes;Base de Cálculo");
+                    else
+                        streamWriter.WriteLine("Indicador;Data;Data Referência;Média;Mediana;Desvio Padrão;Mínimo;Máximo;Número de Respondentes;Base de Cálculo");
+
+                    foreach (var item in viewModel.ExpectativasMercadoMensais)
+                    {
+                        if (indicadorSelecionado.Id == Indicador_Id.Selic)
+                            streamWriter.WriteLine($"{item.Indicador.Descricao};{item.Data.Value.ToShortDateString()};{item.Reuniao};{item.Media.Value};{item.Mediana.Value};{item.DesvioPadrao.Value};{item.Minimo};{item.Maximo};{item.NumeroRespondentes};{item.BaseCalculo}");
+                        else
+                            streamWriter.WriteLine($"{item.Indicador.Descricao};{item.Data.Value.ToShortDateString()};{item.DataReferencia.Value.ToShortDateString()};{item.Media.Value};{item.Mediana.Value};{item.DesvioPadrao.Value};{item.Minimo};{item.Maximo};{item.NumeroRespondentes};{item.BaseCalculo}");
+                    }
+                }
+
+                MessageBox.Show("Exportação concluída com sucesso.", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao exportar para CSV: {ex.Message}", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+    }
+
+    private void CboIndicador_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        this.viewModel = new ExpectativasMercadoMensalViewModel();
+        this.DgExpectativaMercadoMensal.DataContext = viewModel;
     }
 }

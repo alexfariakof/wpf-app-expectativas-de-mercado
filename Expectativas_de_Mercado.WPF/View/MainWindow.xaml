@@ -39,7 +39,7 @@
                       HorizontalAlignment="Left" 
                       SelectedIndex="0"
                       ItemsSource="{Binding Indicadores}"
-                      DisplayMemberPath="Descricao" >
+                      DisplayMemberPath="Descricao"  >
                 <ComboBox.DataContext>
                     <ViewModel:IndicadorViewModel/>
                 </ComboBox.DataContext>
@@ -82,12 +82,23 @@
         <Button x:Name="BtnGrafico" 
                 Content="Gráfico"
                 Margin="120,0,0,8"
+                Background="Purple"
                 Height="32" 
                 Width="100" 
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"                     
                 Grid.Column="1" 
                 Grid.RowSpan="2" />
+        <Button x:Name="BtnExportar" 
+                Content="Exportar"
+                Margin="230,0,0,8"                
+                Height="32"       
+                Width="100" 
+                Background="Green"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"                     
+                Grid.Column="1" 
+                Grid.RowSpan="2"  />
         <DataGrid x:Name="DgExpectativaMercadoMensal" 
             Margin="2,2,2,4"                   
             Width="Auto" 
@@ -111,7 +122,7 @@
                 <DataGridTextColumn Header="DV" Binding="{Binding DesvioPadrao.Value}" />
                 <DataGridTextColumn Header="Mínimo"  Binding="{Binding Minimo}" />
                 <DataGridTextColumn Header="Máximo" Binding="{Binding Maximo}" />
-                <DataGridTextColumn Header="Nº Respondentes " Binding="{Binding NumeroRespondentes}" />
+                <DataGridTextColumn Header="Nº Respondentes" Binding="{Binding NumeroRespondentes}" />
                 <DataGridTextColumn Header="Base de Cálculo" Binding="{Binding BaseCalculo}" />                
             </DataGrid.Columns>
         </DataGrid>
