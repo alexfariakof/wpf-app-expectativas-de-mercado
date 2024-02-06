@@ -23,3 +23,6 @@
 LICENSE
 README.md
 ./.github
+**/Expectativas_de_Mercado.XUnit
+**/Expectativas_de_Mercado.Migrations
+**/*.ps1

@@ -1,8 +1,7 @@
-﻿using Expectativas_de_Mercado.Model.Aggregates;
+﻿using Bacen.Integration.Converters.Model;
+using Expectativas_de_Mercado.Model.Aggregates;
 using Expectativas_de_Mercado.Model.Core;
 using Expectativas_de_Mercado.Model.ValueObjects;
-using PixCharge.Integration.Adapter.Converters;
-using PixCharge.Integration.Adapter.Plataform.OpenPix.Models;
 
 namespace Bacen.Integration.Converters;
 internal class ExpectativasMercadoMensaisParser : IParser<ExpectativasMercadoMensais, ExpectativasMercadoMensal>
@@ -15,6 +14,7 @@ internal class ExpectativasMercadoMensaisParser : IParser<ExpectativasMercadoMen
         objtoConvert.Indicador = new Indicador { Descricao = origin.Indicador };
         objtoConvert.Data = origin.Data;
         objtoConvert.DataReferencia = origin.DataReferencia;
+        objtoConvert.Reuniao= origin.Reuniao;
         objtoConvert.Media = new Media { Value = origin.Media };
         objtoConvert.Mediana = new Mediana { Value = origin.Mediana };
         objtoConvert.DesvioPadrao = new DesvioPadrao { Value  = origin.DesvioPadrao };

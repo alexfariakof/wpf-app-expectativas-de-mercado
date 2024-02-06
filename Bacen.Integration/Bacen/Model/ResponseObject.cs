@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using PixCharge.Integration.Adapter.Plataform.OpenPix.Models;
+﻿using Bacen.Integration.Converters.Model;
+using Newtonsoft.Json;
 
 namespace Bacen.Integration.Bacen.Model;
 public class ResponseObject
