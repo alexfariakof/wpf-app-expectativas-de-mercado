@@ -8,6 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="ScottPlot.WPF" Version="5.0.21" />
     <ProjectReference Include="..\Expectativas_de_Mercado.ViewModel\Expectativas_de_Mercado.ViewModel.csproj" />
   </ItemGroup>
 </Project>

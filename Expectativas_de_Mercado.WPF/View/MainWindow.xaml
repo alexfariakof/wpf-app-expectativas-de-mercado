@@ -79,6 +79,15 @@
                 VerticalAlignment="Bottom"                     
                 Grid.Column="1" 
                 Grid.RowSpan="2"   />
+        <Button x:Name="BtnGrafico" 
+                Content="Gráfico"
+                Margin="120,0,0,8"
+                Height="32" 
+                Width="100" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"                     
+                Grid.Column="1" 
+                Grid.RowSpan="2" />
         <DataGrid x:Name="DgExpectativaMercadoMensal" 
             Margin="2,2,2,4"                   
             Width="Auto" 
