@@ -1,4 +1,4 @@
-﻿namespace PixCharge.Integration.Adapter.Converters;
+﻿namespace Bacen.Integration.Converters;
 public interface IParser<O, D>
 {
     D Parse(O origin);
