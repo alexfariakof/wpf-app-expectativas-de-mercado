@@ -8,105 +8,103 @@
         xmlns:ViewModel="clr-namespace:Expectativas_de_Mercado.ViewModel;assembly=Expectativas_de_Mercado.ViewModel" 
         x:Class="Expectativas_de_Mercado.WPF.MainWindow"
         mc:Ignorable="d"        
-        Title="Expectativas de Mercado Mensais" Width="800" Height="600" >
-    <Viewbox HorizontalAlignment="Left" Stretch="Fill" >
-        <Grid >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="84"/>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Label Content="Período"                   
-                   Margin="3,1,0,0"                    
-                   Width="51" 
-                   Height="26"
-                   HorizontalAlignment="Left" 
-                   VerticalAlignment="Top"                    
-                   Grid.Column="0" 
-                   Grid.Row="0" />
-            <DatePicker x:Name="DpInicio" 
-                        Margin="8,25,0,0" 
-                        Width="138" 
-                        Height="24" 
-                        HorizontalAlignment="Left" 
-                        VerticalAlignment="Top"                        
-                        DisplayDateStart="2000-01-01" 
-                        DisplayDateEnd="2025-12-31"   
-                        Grid.Column="0" 
-                        Grid.Row="0"
-                        ToolTip="Período Inicial para pesquisa de dados" SelectedDateChanged="DpInicio_SelectedDateChanged"
-                        />
-            <DatePicker x:Name="DpFim"
-                        Margin="8,55,0,0" 
-                        Width="138" 
-                        Height="24" 
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"                                                
-                        DisplayDateStart="2000-01-01" 
-                        DisplayDateEnd="2025-12-31" 
-                        Grid.Column="0" 
-                        Grid.Row="0"
-                        ToolTip="Período Inicial para pesquisa de dados" SelectedDateChanged="DpFim_SelectedDateChanged" />
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Expectativas de Mercado" Height="450" MinWidth="950" MinHeight="450" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">
             <Label Content="Indicador&#xA;"                    
-                   Margin="153,1,0,0"                    
                    Width="64" 
-                   Height="26" 
-                   HorizontalAlignment="Left" 
-                   VerticalAlignment="Top"   
-                   Grid.Column="0" 
-                   Grid.Row="0"/>
+                   Height="27" 
+                   VerticalAlignment="Top" FontWeight="Bold" />
             <ComboBox x:Name="CboIndicador"                      
-                      Margin="158,27,0,0" 
                       Width="119"
                       Height="22"
                       VerticalAlignment="Top" 
                       HorizontalAlignment="Left" 
                       SelectedIndex="0"
-                      Grid.Column="0" 
-                      Grid.Row="0" 
                       ItemsSource="{Binding Indicadores}"
                       DisplayMemberPath="Descricao" >
                 <ComboBox.DataContext>
                     <ViewModel:IndicadorViewModel/>
                 </ComboBox.DataContext>
             </ComboBox>
-            <Button x:Name="BtnPesquisar" 
-                    Content="Pesquisar"                    
-                    Margin="282,17,10,0" 
-                    Height="32" Width="86"
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Top"                     
-                    Grid.Column="0" 
-                    Grid.Row="0" 
-                    Click="BtnPesquisar_Click" />
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" >
-                <DataGrid x:Name="DgExpectativaMercadoMensal" 
-                  Margin="2,0,2,4"                   
-                  Width="Auto" 
-                  MinHeight="320"
-                  VerticalAlignment="Center"                  
-                  ItemsSource="{Binding ExpectativasMercadoMensais}" 
-                  AutoGenerateColumns="False"
-                   >
-                    <DataGrid.DataContext>
-                        <ViewModel:ExpectativasMercadoMensalViewModel/>
-                    </DataGrid.DataContext>
-                    <DataGrid.Columns   >
-                        <DataGridTextColumn Header="Indicador" Binding="{Binding Indicador.Descricao}" />
-                        <DataGridTextColumn Header="Data" Binding="{Binding Data}"/>
-                        <DataGridTextColumn Header="Data Referência" Binding="{Binding DataReferencia}" />
-                        <DataGridTextColumn Header="Média"  Binding="{Binding Media.Value}" />
-                        <DataGridTextColumn Header="Mediana"  Binding="{Binding Mediana.Value}" />
-                        <DataGridTextColumn Header="Desvio Padrão" Binding="{Binding DesvioPadrao.Value}" />
-                        <DataGridTextColumn Header="Mínimo"  Binding="{Binding Minimo}" />
-                        <DataGridTextColumn Header="Máximo" Binding="{Binding Maximo}" />
-                        <DataGridTextColumn Header="Base de Cálculo" Binding="{Binding BaseCalculo}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </ScrollViewer>
-        </Grid>
-    </Viewbox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="1" >
+            <Label Content="Período"                   
+                   Width="Auto" 
+                   Height="26"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Top" FontWeight="Bold" />
+            <DatePicker x:Name="DpInicio" 
+                        Width="138" 
+                        Height="24" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top"                        
+                        DisplayDateStart="2000-01-01" 
+                        ToolTip="Período Inicial para pesquisa de dados"   />
+            <Label Content="até"                   
+                   Width="26" 
+                   Height="26" 
+                   VerticalAlignment="Top" FontWeight="Bold" />
+            <DatePicker x:Name="DpFim"
+                        Width="138" 
+                        Height="24" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"                                                
+                        DisplayDateStart="2000-01-01"                         
+                        ToolTip="Período Inicial para pesquisa de dados"  />
+        </StackPanel>
+        <Button x:Name="BtnPesquisar" 
+                Content="Pesquisar"
+                Margin="8,0,0,8"
+                Height="32" 
+                Width="100" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"                     
+                Grid.Column="1" 
+                Grid.RowSpan="2"   />
+        <DataGrid x:Name="DgExpectativaMercadoMensal" 
+            Margin="2,2,2,4"                   
+            Width="Auto" 
+            MinHeight="320"
+            ItemsSource="{Binding ExpectativasMercadoMensais}" 
+            AutoGenerateColumns="False"             
+            ColumnWidth="Auto"
+            Grid.Row="2" 
+            Grid.ColumnSpan="2"
+            HorizontalScrollBarVisibility="Disabled" >
+            <DataGrid.DataContext>
+                <ViewModel:ExpectativasMercadoMensalViewModel/>
+            </DataGrid.DataContext>
+            <DataGrid.Columns  >
+                <DataGridTextColumn Header="Indicador" Binding="{Binding Indicador.Descricao}" />
+                <DataGridTextColumn Header="Data" Binding="{Binding Data, StringFormat={}{0:dd/MM/yyyy}}" />
+                <DataGridTextColumn Header="Referência" Binding="{Binding DataReferencia, StringFormat={}{0:dd/MM/yyyy}}" />
+                <DataGridTextColumn Header="Reunião" Binding="{Binding Reuniao}" />
+                <DataGridTextColumn Header="Média"  Binding="{Binding Media.Value}" />
+                <DataGridTextColumn Header="Mediana"  Binding="{Binding Mediana.Value}" />
+                <DataGridTextColumn Header="DV" Binding="{Binding DesvioPadrao.Value}" />
+                <DataGridTextColumn Header="Mínimo"  Binding="{Binding Minimo}" />
+                <DataGridTextColumn Header="Máximo" Binding="{Binding Maximo}" />
+                <DataGridTextColumn Header="Nº Respondentes " Binding="{Binding NumeroRespondentes}" />
+                <DataGridTextColumn Header="Base de Cálculo" Binding="{Binding BaseCalculo}" />                
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </Window>
