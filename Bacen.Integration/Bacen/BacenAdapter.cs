@@ -10,9 +10,7 @@ public class BacenAdapter : IExpectativasMercados
 {
     private const string baseUrl = "https://olinda.bcb.gov.br/olinda/servico/Expectativas/versao/v1/odata/";
     public async Task<List<ExpectativasMercadoMensal>> GetExpectativasMercadoMensais(Indicador indicador, DateTime dtInicial, DateTime dtFinal)
-    {
-        
-        
+    {                
         try
         {            
             using (HttpClient client = new HttpClient())
