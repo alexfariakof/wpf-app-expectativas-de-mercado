@@ -70,6 +70,13 @@ jobs:
           
           dotnet tool install -g dotnet-reportgenerator-globaltool
           dotnet test ./Expectativas_de_Mercado.XUnit/Expectativas_de_Mercado.XUnit.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --collect:"XPlat Code Coverage;Format=opencover"
-          
+
+          $projectTestPath = Get-Location
+          $projectPath =  (Resolve-Path -Path ..).Path
+          $sourceDirs = "$projectPath\Expectativas_de_Mercado.ViewModel;$projectPath\Expectativas_de_Mercado.Repository;$projectPath\Expectativas_de_Mercado.Model;$projectPath\Bacen.Integration;"
+          $reportPath = Join-Path -Path $projectTestPath -ChildPath "TestResults"
+          $coverageXmlPath = Join-Path -Path (Join-Path -Path $projectTestPath -ChildPath "TestResults") -ChildPath "coveragereport"
+          reportgenerator -reports:$projectTestPath\coverage.cobertura.xml -targetdir:$coverageXmlPath -reporttypes:"lcov;" -sourcedirs:$sourceDirs
+
           ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
   
