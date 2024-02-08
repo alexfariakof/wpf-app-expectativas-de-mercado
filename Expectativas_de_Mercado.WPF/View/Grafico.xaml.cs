@@ -36,11 +36,11 @@ public partial class Grafico : Page
          .ToList();
 
         var XAxis = groupedByDataExpectativasMercados.Where(em => em.Data.HasValue).Select(em => em.Data).ToArray();
-        double[] media = groupedByDataExpectativasMercados.Where(em => em.Media != null).Select(em => (double)em.Media.Value).ToArray();
-        double[] mediana= groupedByDataExpectativasMercados.Where(em => em.Mediana!= null).Select(em => (double)em.Mediana.Value).ToArray();
-        double[] desvioPadrao = groupedByDataExpectativasMercados.Where(em => em.DesvioPadrao != null).Select(em => (double)em.DesvioPadrao.Value).ToArray();
-        double[] minimo = groupedByDataExpectativasMercados.Where(em => em.Minimo != 0).Select(em => (double)em.Minimo).ToArray();
-        double[] maximo = groupedByDataExpectativasMercados.Where(em => em.Maximo != 0).Select(em => (double)em.Maximo).ToArray();
+        decimal[] media = groupedByDataExpectativasMercados.Where(em => em.Media != null).Select(em => em.Media.Value).ToArray();
+        decimal[] mediana= groupedByDataExpectativasMercados.Where(em => em.Mediana!= null).Select(em => em.Mediana.Value).ToArray();
+        decimal[] desvioPadrao = groupedByDataExpectativasMercados.Where(em => em.DesvioPadrao != null).Select(em => em.DesvioPadrao.Value).ToArray();
+        decimal[] minimo = groupedByDataExpectativasMercados.Where(em => em.Minimo != 0).Select(em => em.Minimo).ToArray();
+        decimal[] maximo = groupedByDataExpectativasMercados.Where(em => em.Maximo != 0).Select(em => em.Maximo).ToArray();
 
 
         WpfPlot1.Plot.Add.Scatter(XAxis, media, ScottPlot.Color.FromHex("#0B0FED"));

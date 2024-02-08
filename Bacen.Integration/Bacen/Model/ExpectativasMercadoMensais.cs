@@ -7,11 +7,11 @@ public sealed class ExpectativasMercadoMensais
     public DateTime? Data { get; set; }
     public DateTime? DataReferencia { get; set; }
     public string Reuniao { get; set; } = String.Empty;
-    public double Media { get; set; } 
-    public double Mediana { get; set; }
-    public double DesvioPadrao { get; set; }
-    public double Minimo { get; set; }
-    public double Maximo { get; set; }
+    public decimal Media { get; set; } 
+    public decimal Mediana { get; set; }
+    public decimal DesvioPadrao { get; set; }
+    public decimal Minimo { get; set; }
+    public decimal Maximo { get; set; }
     public int NumeroRespondentes { get; set; }
     public int BaseCalculo { get; set; }
 }

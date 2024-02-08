@@ -11,8 +11,8 @@ public class ExpectativasMercado : Base
     public Media Media { get; set; } = new Media();
     public Mediana Mediana { get; set; } = new  Mediana();
     public DesvioPadrao DesvioPadrao { get; set; } = new DesvioPadrao();
-    public double Minimo { get; set; }
-    public double Maximo { get; set; }
+    public decimal Minimo { get; set; }
+    public decimal Maximo { get; set; }
     public int NumeroRespondentes { get; set; }
     public int BaseCalculo { get; set; }    
 }
