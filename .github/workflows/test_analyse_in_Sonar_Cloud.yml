@@ -66,7 +66,7 @@ jobs:
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |                    
-          ./.sonar/scanner/dotnet-sonarscanner begin /k:"alexfariakof_BACEN-Expectativas-de-Mercado" /o:"alexfariakof" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.exclusions="Expectativas_de_Mercado.WPF/**, Expectativas_de_Mercado.XUnit/**/*.cs, Expectativas_de_Mercado.Migrations/**, **/Program.cs,, **/AssemblyInfo.cs, **/*.xaml " /d:sonar.cs.lcov.reportPaths="**/coveragereport/lcov.info"          
+          ./.sonar/scanner/dotnet-sonarscanner begin /k:"alexfariakof_BACEN-Expectativas-de-Mercado" /o:"alexfariakof" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.exclusions="Expectativas_de_Mercado.WPF/**, Expectativas_de_Mercado.XUnit/**/*.cs, Expectativas_de_Mercado.Migrations/**, **/Program.cs,, **/AssemblyInfo.cs, **/*.xaml "  /d:sonar.cs.opencover.reportsPaths="**/coverage.cobertura.xml" /d:sonar.cs.lcov.reportPaths="**/coveragereport/lcov.info"          
           
             dotnet tool install -g dotnet-reportgenerator-globaltool
             dotnet test ./Expectativas_de_Mercado.XUnit/Expectativas_de_Mercado.XUnit.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --collect:"XPlat Code Coverage;Format=opencover"
@@ -76,6 +76,6 @@ jobs:
             $sourceDirs = "$baseDirectory\Expectativas_de_Mercado.ViewModel;$baseDirectory\Expectativas_de_Mercado.Repository;$baseDirectory\Expectativas_de_Mercado.Model;$baseDirectory\Bacen.Integration;"
             $coverageXmlPath = Join-Path -Path (Join-Path -Path $projectTestPath -ChildPath "TestResults") -ChildPath "coveragereport"
             $filefilters = "-$projectPath\Expectativas_de_Mercado.XUnit\**;-$projectPath\Expectativas_de_Mercado.WPF\**;-$projectPath\Expectativas_de_Mercado.Migrations\**;"
-            reportgenerator -reports:$projectTestPath\coverage.cobertura.xml -targetdir:$coverageXmlPath\coveragereport -reporttypes:"lcov;" -sourcedirs:$sourceDirs -filefilters:$$filefilters 
+            reportgenerator -reports:$projectTestPath\coverage.cobertura.xml -targetdir:$coverageXmlPath -reporttypes:"lcov;" -sourcedirs:$sourceDirs -filefilters:$$filefilters 
             
           ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
