@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bacen.Integration\Bacen.Integration.csproj" />
     <ProjectReference Include="..\Expectativas_de_Mercado.Model\Expectativas_de_Mercado.Model.csproj" />
   </ItemGroup>
 </Project>

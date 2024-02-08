@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -9,27 +8,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include=".Mock\ExpectativasMercadoFaker.cs" />
+    <Compile Include=".Mock\IndicadorFaker.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="35.4.0" />
     <PackageReference Include="coverlet.msbuild" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.26" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="coverlet.collector" Version="3.2.0">
+    <PackageReference Include="coverlet.collector" Version="6.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-
+  
   <ItemGroup>
+  <ProjectReference Include="..\Bacen.Integration\Bacen.Integration.csproj" />
     <ProjectReference Include="..\Expectativas_de_Mercado.Model\Expectativas_de_Mercado.Model.csproj" />
     <ProjectReference Include="..\Expectativas_de_Mercado.Repository\Expectativas_de_Mercado.Repository.csproj" />
     <ProjectReference Include="..\Expectativas_de_Mercado.ViewModel\Expectativas_de_Mercado.ViewModel.csproj" />
   </ItemGroup>
+
   <PropertyGroup>
     <TestDependsOn>
       AfterTest;

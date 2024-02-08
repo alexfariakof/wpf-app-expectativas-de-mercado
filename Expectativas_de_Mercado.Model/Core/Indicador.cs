@@ -1,17 +1,37 @@
-﻿using System.ComponentModel;
+﻿using Expectativas_de_Mercado.Model.Aggregates;
+using System.ComponentModel;
 
 namespace Expectativas_de_Mercado.Model.Core;
+public enum Indicador_Id
+{
+    [Description("Nenhum Selecionado")]
+    Invalid = 0, 
+
+    [Description("IPCA")]
+    IPCA = 1,
+
+    [Description("IGP-M")]
+    IGP_M = 2,
+
+    [Description("Selic")]
+    Selic = 3,
+}
 public class Indicador
 {
     public  Indicador_Id Id { get; set; }
 
-    private string _descricao;
+    private string _descricao = String.Empty;
     public string Descricao
     {
         get { return _descricao; }
         set { _descricao = value; }
     }
+    public List<ExpectativasMercado> ExpectativasMercados { get; set; } = new();
     public Indicador() { }
+    public Indicador(string description) 
+    { 
+        this._descricao = description;
+    }
     public Indicador(Indicador_Id indicador)
     {
         Id = indicador;
@@ -39,18 +59,5 @@ public class Indicador
         {
             return value;
         }
-
     }
-}
-
-public enum Indicador_Id
-{
-    [Description("IPCA")]
-    IPCA = 1,
-
-    [Description("IGP-M")]
-    IGP_M = 2,
-
-    [Description("Selic")]
-    Selic = 3,
 }
