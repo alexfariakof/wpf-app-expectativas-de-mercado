@@ -8,7 +8,7 @@ public class BacenAdapterTests
     {
         // Arrange
         var bacenAdapter = new BacenAdapter();
-        var indicador = new Indicador { Descricao = "IPCA" };
+        var indicador = new Indicador("IPCA");
         var dtInicial = DateTime.Now.AddDays(-10);
         var dtFinal = DateTime.Now;
 

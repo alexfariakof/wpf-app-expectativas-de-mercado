@@ -6,10 +6,10 @@ using Bacen.Integration.Converters;
 using Bacen.Integration.Bacen.Model;
 
 namespace Bacen.Integration.Bacen;
-public class BacenAdapter : IExpectativasMercados
+public class BacenAdapter : IExpectativasMercadosMensais
 {
     private const string baseUrl = "https://olinda.bcb.gov.br/olinda/servico/Expectativas/versao/v1/odata/";
-    public async Task<List<ExpectativasMercadoMensal>> GetExpectativasMercadoMensais(Indicador indicador, DateTime dtInicial, DateTime dtFinal)
+    public async Task<List<ExpectativasMercado>> GetExpectativasMercadoMensais(Indicador indicador, DateTime dtInicial, DateTime dtFinal)
     {                
         try
         {            
@@ -30,8 +30,8 @@ public class BacenAdapter : IExpectativasMercados
                     {
                         response.EnsureSuccessStatusCode();
                         string responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                        var data = JsonConvert.DeserializeObject<ResponseObject>(responseBody);
-                        var expectativasMercadosMensais = new ExpectativasMercadoMensaisParser().ParseList(data.Value);
+                        var data = JsonConvert.DeserializeObject<ResponseObject>(responseBody) ?? new ();
+                        var expectativasMercadosMensais = new ExpectativasMercadoMensaisParser().ParseList(data.Value) ;
                         return expectativasMercadosMensais ?? new();
                     }
                 }
@@ -39,7 +39,7 @@ public class BacenAdapter : IExpectativasMercados
         }
         catch(Exception ex)
         {
-            throw ex;
+            throw new Exception(ex.Message);
         }
     }
 }

@@ -6,12 +6,12 @@ using System.Collections.ObjectModel;
 namespace Expectativas_de_Mercado.ViewModel;
 public class ExpectativasMercadoMensalViewModel
 {
-    public ObservableCollection<ExpectativasMercadoMensal> ExpectativasMercadoMensais { get; set; } = new();
+    public ObservableCollection<ExpectativasMercado> ExpectativasMercadoMensais { get; set; } = new();
     public ExpectativasMercadoMensalViewModel()  { }
     public ExpectativasMercadoMensalViewModel(Indicador indicador, DateTime dtInicial, DateTime dtFinal) 
     {
         var bacenAdapter = new BacenAdapter();        
         var result = bacenAdapter.GetExpectativasMercadoMensais(indicador, dtInicial, dtFinal).Result;
-        this.ExpectativasMercadoMensais = new ObservableCollection<ExpectativasMercadoMensal>(result);
+        this.ExpectativasMercadoMensais = new ObservableCollection<ExpectativasMercado>(result);
     }
 }
