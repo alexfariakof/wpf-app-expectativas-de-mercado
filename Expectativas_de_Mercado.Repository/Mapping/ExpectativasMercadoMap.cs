@@ -5,7 +5,7 @@ using Expectativas_de_Mercado.Model.ValueObjects;
 using Expectativas_de_Mercado.Model.Core;
 
 namespace Expectativas_de_Mercado.Repository.Mapping;
-internal class ExpectativasMercadoMap : IEntityTypeConfiguration<ExpectativasMercado>
+public class ExpectativasMercadoMap : IEntityTypeConfiguration<ExpectativasMercado>
 {
     public void Configure(EntityTypeBuilder<ExpectativasMercado> builder)
     {

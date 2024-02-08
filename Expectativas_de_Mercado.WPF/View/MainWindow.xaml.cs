@@ -21,8 +21,9 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        DpInicio.SelectedDate = DateTime.Now.AddDays(-6);
+        DpInicio.SelectedDate = DateTime.Now.AddMonths(-1);
         DpFim.SelectedDate = DateTime.Now;
+        this.Width = this.MinWidth;
         this.viewModel = new ExpectativasMercadoMensalViewModel();
         this.DgExpectativaMercadoMensal.DataContext = viewModel;
         this.BtnPesquisar.Click += this.BtnPesquisar_Click;
@@ -64,7 +65,7 @@ public partial class MainWindow : Window
             Title = "Gráfico Expectativas Mensais " + indicadorSelecionado.Descricao
         };
 
-        page.ShowGrafico();
+        page.ShowGrafico(this.viewModel);
         window.ShowDialog();        
     }
 
@@ -74,6 +75,7 @@ public partial class MainWindow : Window
     private void BtnExportar_Click(object sender, RoutedEventArgs e)
     {
         var indicadorSelecionado = (Indicador)CboIndicador.SelectedItem;
+
         var formattedDtInicial = DpInicio.SelectedDate.Value.ToString("yyyyMMdd");
         var formattedDtFinal = DpFim.SelectedDate.Value.ToString("yyyyMMdd");
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Expectativas_de_Mercado.Model.Core;
 
 namespace Expectativas_de_Mercado.Repository.Mapping;
-internal class IndicadorMap : IEntityTypeConfiguration<Indicador>
+public class IndicadorMap : IEntityTypeConfiguration<Indicador>
 {
     public void Configure(EntityTypeBuilder<Indicador> builder)
     {
