@@ -6,7 +6,7 @@ using Bacen.Integration.Converters;
 using Bacen.Integration.Bacen.Model;
 
 namespace Bacen.Integration.Bacen;
-public class BacenAdapter : IExpectativasMercadosMensais
+public class BacenIntegration : IBacenAdpter
 {
     private const string baseUrl = "https://olinda.bcb.gov.br/olinda/servico/Expectativas/versao/v1/odata/";
     public async Task<List<ExpectativasMercado>> GetExpectativasMercadoMensais(Indicador indicador, DateTime dtInicial, DateTime dtFinal)
