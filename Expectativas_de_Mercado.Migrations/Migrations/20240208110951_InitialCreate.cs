@@ -27,7 +27,6 @@ namespace Expectativas_de_Mercado.Migrations.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IndicadorId1 = table.Column<int>(type: "int", nullable: false),
                     Data = table.Column<DateTime>(type: "datetime2", maxLength: 100, nullable: false),
                     DataReferencia = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Reuniao = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -38,7 +37,7 @@ namespace Expectativas_de_Mercado.Migrations.Migrations
                     Maximo = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     NumeroRespondentes = table.Column<int>(type: "int", nullable: false),
                     BaseCalculo = table.Column<int>(type: "int", nullable: false),
-                    IndicadorId = table.Column<int>(type: "int", nullable: false)
+                    IndicadorId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -47,14 +46,7 @@ namespace Expectativas_de_Mercado.Migrations.Migrations
                         name: "FK_ExpectativasMercado_Indicador_IndicadorId",
                         column: x => x.IndicadorId,
                         principalTable: "Indicador",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ExpectativasMercado_Indicador_IndicadorId1",
-                        column: x => x.IndicadorId1,
-                        principalTable: "Indicador",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -76,11 +68,6 @@ namespace Expectativas_de_Mercado.Migrations.Migrations
                 name: "IX_ExpectativasMercado_IndicadorId",
                 table: "ExpectativasMercado",
                 column: "IndicadorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ExpectativasMercado_IndicadorId1",
-                table: "ExpectativasMercado",
-                column: "IndicadorId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

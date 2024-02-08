@@ -36,6 +36,14 @@ public partial class MainWindow : Window
     /// </summary>
     private void BtnPesquisar_Click(object sender, RoutedEventArgs e)
     {
+        var indicadorSelecionado = (Indicador)CboIndicador.SelectedItem;
+        if (indicadorSelecionado.Id == Indicador_Id.Invalid)
+        {
+            MessageBox.Show("Selecione um indicador para realizar a pesquisa.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+        this.viewModel = new ExpectativasMercadoMensalViewModel(indicadorSelecionado, DpInicio.SelectedDate.Value, DpFim.SelectedDate.Value);
+        this.DgExpectativaMercadoMensal.DataContext = viewModel;
     }
 
     /// <summary>
@@ -44,6 +52,11 @@ public partial class MainWindow : Window
     private void BtnGrafico_Click(object sender, RoutedEventArgs e)
     {
         var indicadorSelecionado = (Indicador)CboIndicador.SelectedItem;
+        if (indicadorSelecionado.Id == Indicador_Id.Invalid)
+        {
+            MessageBox.Show("Selecione um indicador para exibir o gráfico.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
         Grafico page = new Grafico();
         Window window = new Window
         {

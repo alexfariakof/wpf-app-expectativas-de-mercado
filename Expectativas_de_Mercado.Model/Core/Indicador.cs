@@ -4,8 +4,8 @@ using System.ComponentModel;
 namespace Expectativas_de_Mercado.Model.Core;
 public enum Indicador_Id
 {
-    [Description("Todos")]
-    Todos = 0, 
+    [Description("Nenhum Selecionado")]
+    Invalid = 0, 
 
     [Description("IPCA")]
     IPCA = 1,
