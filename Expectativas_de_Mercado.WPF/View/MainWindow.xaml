@@ -27,11 +27,12 @@
             <RowDefinition Height="32"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">
-            <Label Content="Indicador&#xA;"                    
+        <StackPanel Margin="4, 0, 0, 0" Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">
+            <Label Content="Indicador"                    
                    Width="64" 
                    Height="27" 
-                   VerticalAlignment="Top" FontWeight="Bold" />
+                   VerticalAlignment="Top" 
+                   FontWeight="Bold" />
             <ComboBox x:Name="CboIndicador"                      
                       Width="119"
                       Height="22"
@@ -45,12 +46,13 @@
                 </ComboBox.DataContext>
             </ComboBox>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="1" >
+        <StackPanel Margin="4, 0, 0, 0" Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="1" >
             <Label Content="Período"                   
-                   Width="Auto" 
+                   Width="64" 
                    Height="26"
                    HorizontalAlignment="Left" 
-                   VerticalAlignment="Top" FontWeight="Bold" />
+                   VerticalAlignment="Top" 
+                   FontWeight="Bold" />
             <DatePicker x:Name="DpInicio" 
                         Width="138" 
                         Height="24" 

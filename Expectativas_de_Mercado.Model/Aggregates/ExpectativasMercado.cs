@@ -2,7 +2,7 @@
 using Expectativas_de_Mercado.Model.ValueObjects;
 
 namespace Expectativas_de_Mercado.Model.Aggregates;
-public class ExpectativasMercadoMensal : Base
+public class ExpectativasMercado : Base
 {
     public Indicador Indicador { get; set; } = new Indicador();
     public DateTime? Data {  get; set; }

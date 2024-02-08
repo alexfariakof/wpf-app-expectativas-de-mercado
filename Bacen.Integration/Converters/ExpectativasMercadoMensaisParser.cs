@@ -4,14 +4,14 @@ using Expectativas_de_Mercado.Model.Core;
 using Expectativas_de_Mercado.Model.ValueObjects;
 
 namespace Bacen.Integration.Converters;
-internal class ExpectativasMercadoMensaisParser : IParser<ExpectativasMercadoMensais, ExpectativasMercadoMensal>
+internal class ExpectativasMercadoMensaisParser : IParser<ExpectativasMercadoMensais, ExpectativasMercado>
 {
-    public ExpectativasMercadoMensal Parse(ExpectativasMercadoMensais origin)
+    public ExpectativasMercado Parse(ExpectativasMercadoMensais origin)
     {
-        if (origin == null) return new ExpectativasMercadoMensal();
-        var objtoConvert = new ExpectativasMercadoMensal();
+        if (origin == null) return new ExpectativasMercado();
+        var objtoConvert = new ExpectativasMercado();
 
-        objtoConvert.Indicador = new Indicador { Descricao = origin.Indicador };
+        objtoConvert.Indicador = new Indicador(origin.Indicador) ;
         objtoConvert.Data = origin.Data;
         objtoConvert.DataReferencia = origin.DataReferencia;
         objtoConvert.Reuniao= origin.Reuniao;
@@ -24,9 +24,9 @@ internal class ExpectativasMercadoMensaisParser : IParser<ExpectativasMercadoMen
         objtoConvert.BaseCalculo = origin.BaseCalculo;
         return objtoConvert;
     }
-    public List<ExpectativasMercadoMensal> ParseList(List<ExpectativasMercadoMensais> origin)
+    public List<ExpectativasMercado> ParseList(List<ExpectativasMercadoMensais> origin)
     {
-        if (origin == null) return new List<ExpectativasMercadoMensal>();
+        if (origin == null) return new List<ExpectativasMercado>();
         return origin.Select(item => Parse(item)).ToList();
     }
 }

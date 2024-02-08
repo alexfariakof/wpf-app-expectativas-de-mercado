@@ -1,0 +1,10 @@
+﻿# Inicializa Migratiuons 
+Add-Migration InitialCreate
+
+# Atualiza o SGBD com as configurações do Igrations 
+Update-Database
+
+
+# Adiciona um nomo pipeline ao Migrations 
+Add-Migration <Name pipeline changes>
+Add-Migration Changes-relationship-between-Card-and-CardBrand
