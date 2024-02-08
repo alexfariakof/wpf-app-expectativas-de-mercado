@@ -45,7 +45,7 @@
     </TestDependsOn>
   </PropertyGroup>
 
-  <Target Name="Test" AfterTargets="Build;Rebuild" DependsOnTargets="$(TestDependsOn)" />
+  <Target Name="Test" AfterTargets="Build;Rebuild" DependsOnTargets="$(TestDependsOn)"  Condition=" '$(Configuration)' == 'Debug'"/>
   <Target Name="AfterTest">
     <!-- Check if OS is Windows -->
     <Exec Condition="'$(OS)' == 'Windows_NT'" Command="powershell -File ./coverage_report.ps1" />
