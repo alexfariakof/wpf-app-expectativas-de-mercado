@@ -11,6 +11,64 @@
      d:DesignHeight="450" d:DesignWidth="800"
      Title="Gráfico">
     <Grid >
-         <ScottPlot:WpfPlot x:Name="WpfPlot1" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Margin="4, 0, 0, 0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="0" >
+            <Rectangle Margin="0, 0, 0, 6 "
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Bottom"
+                       Height="10" 
+                       Width="10"                        
+                       Stroke="Black" 
+                       Fill="#FF0B0FED" />
+            <Label Content="Média"                    
+                   VerticalAlignment="Center" 
+                   FontWeight="Bold" />
+            <Rectangle Margin="0, 0, 0, 6 "
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Bottom"
+                       Height="10" 
+                       Width="10"                        
+                       Stroke="Black" 
+                       Fill="#FFF37D06" />
+            <Label Content="Mediana"                    
+                   VerticalAlignment="Center" 
+                   FontWeight="Bold" />
+            <Rectangle Margin="0, 0, 0, 6 "
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Bottom"
+                       Height="10" 
+                       Width="10"                        
+                       Stroke="Black" 
+                       Fill="#FF000000" />
+            <Label Content="Desvio Padrão"                    
+                   VerticalAlignment="Center" 
+                   FontWeight="Bold" />
+            <Rectangle Margin="0, 0, 0, 6 "
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Bottom"
+                       Height="10" 
+                       Width="10"                        
+                       Stroke="Black" 
+                       Fill="#FFED0202" />
+            <Label Content="Mínimo"                    
+                   VerticalAlignment="Center" 
+                   FontWeight="Bold" />
+            <Rectangle Margin="0, 0, 0, 6 "
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Bottom"
+                       Height="10" 
+                       Width="10"                        
+                       Stroke="Black" 
+                       Fill="#FF44E40C" />
+            <Label Content="Máximo"                    
+                   VerticalAlignment="Center" 
+                   FontWeight="Bold" />
+
+        </StackPanel>
+        <ScottPlot:WpfPlot x:Name="WpfPlot1" Grid.Row="1" />
+        
     </Grid>
 </Page>

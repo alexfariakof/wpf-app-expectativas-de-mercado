@@ -16,7 +16,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Expectativas de Mercado" Height="450" MinWidth="950" MinHeight="450" >
+        Title="Expectativas de Mercado"  Width="Auto" Height="450" MinWidth="950" MinHeight="450" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -34,19 +34,20 @@
                    VerticalAlignment="Top" 
                    FontWeight="Bold" />
             <ComboBox x:Name="CboIndicador"                      
-                      Width="119"
+                      Width="142"
                       Height="22"
+                      HorizontalContentAlignment="Center"
                       VerticalAlignment="Top" 
-                      HorizontalAlignment="Left" 
+                      HorizontalAlignment="Left"                       
                       SelectedIndex="0"
                       ItemsSource="{Binding Indicadores}"
-                      DisplayMemberPath="Descricao"  >
+                      DisplayMemberPath="Descricao"   >
                 <ComboBox.DataContext>
                     <ViewModel:IndicadorViewModel/>
                 </ComboBox.DataContext>
             </ComboBox>
         </StackPanel>
-        <StackPanel Margin="4, 0, 0, 0" Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="1" >
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" >
             <Label Content="Período"                   
                    Width="64" 
                    Height="26"

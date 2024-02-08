@@ -3,7 +3,7 @@ public record DesvioPadrao
 {
     public decimal Value { get; set; }
     public static implicit operator decimal(DesvioPadrao d) => d.Value;
-    public static implicit operator DesvioPadrao(decimal value) => new DesvioPadrao(value);
+    public static implicit operator DesvioPadrao(decimal  value) => new DesvioPadrao(value);
     public DesvioPadrao() { }
     public DesvioPadrao(decimal value) => this.Value = value;
 }
