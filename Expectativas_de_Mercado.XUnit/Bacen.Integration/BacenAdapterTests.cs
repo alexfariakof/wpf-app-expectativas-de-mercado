@@ -1,13 +1,14 @@
-﻿using Expectativas_de_Mercado.Model.Core;
+﻿using Bacen.Integration.Bacen;
+using Expectativas_de_Mercado.Model.Core;
 
-namespace Bacen.Integration.Bacen.Tests;
+namespace Bacen.Integration;
 public class BacenAdapterTests
 {
     [Fact]
     public async Task Should_Returns_Valid_Data_GetExpectativasMercadoMensais()
     {
         // Arrange
-        var bacenAdapter = new BacenAdapter();
+        var bacenAdapter = new BacenIntegration();
         var indicador = new Indicador("IPCA");
         var dtInicial = DateTime.Now.AddDays(-10);
         var dtFinal = DateTime.Now;

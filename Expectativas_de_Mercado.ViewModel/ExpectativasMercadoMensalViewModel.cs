@@ -10,7 +10,7 @@ public class ExpectativasMercadoMensalViewModel
     public ExpectativasMercadoMensalViewModel()  { }
     public ExpectativasMercadoMensalViewModel(Indicador indicador, DateTime dtInicial, DateTime dtFinal) 
     {
-        var bacenAdapter = new BacenAdapter();        
+        var bacenAdapter = new BacenIntegration();        
         var result = bacenAdapter.GetExpectativasMercadoMensais(indicador, dtInicial, dtFinal).Result;
         this.ExpectativasMercadoMensais = new ObservableCollection<ExpectativasMercado>(result);
     }
