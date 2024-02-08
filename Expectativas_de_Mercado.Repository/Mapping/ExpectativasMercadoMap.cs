@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using Expectativas_de_Mercado.Model.ValueObjects;
+using Expectativas_de_Mercado.Model.Core;
 
 namespace Expectativas_de_Mercado.Repository.Mapping;
 public class ExpectativasMercadoMap : IEntityTypeConfiguration<ExpectativasMercado>
@@ -10,7 +11,7 @@ public class ExpectativasMercadoMap : IEntityTypeConfiguration<ExpectativasMerca
     {
         builder.ToTable(nameof(ExpectativasMercado));
         builder.HasKey(x => x.Id);
-        builder.Property(x => x.Id).ValueGeneratedOnAdd();
+        builder.Property(x => x.Id).ValueGeneratedOnAdd();               
         builder.Property(x => x.Data).IsRequired().HasMaxLength(100);
         builder.Property(x => x.DataReferencia);
         builder.Property(x => x.Reuniao);
@@ -34,5 +35,7 @@ public class ExpectativasMercadoMap : IEntityTypeConfiguration<ExpectativasMerca
         builder.Property(x => x.Maximo).IsRequired();
         builder.Property(x => x.NumeroRespondentes).IsRequired();
         builder.Property(x => x.BaseCalculo).IsRequired();
+
+        
     }
 }

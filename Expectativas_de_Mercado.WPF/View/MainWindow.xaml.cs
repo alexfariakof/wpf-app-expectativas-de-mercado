@@ -38,7 +38,7 @@ public partial class MainWindow : Window
     private void BtnPesquisar_Click(object sender, RoutedEventArgs e)
     {
         var indicadorSelecionado = (Indicador)CboIndicador.SelectedItem;
-        if (indicadorSelecionado.Id == Indicador_Id.Todos)
+        if (indicadorSelecionado.Id == Indicador_Id.Invalid)
         {
             MessageBox.Show("Selecione um indicador para realizar a pesquisa.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
@@ -53,7 +53,7 @@ public partial class MainWindow : Window
     private void BtnGrafico_Click(object sender, RoutedEventArgs e)
     {
         var indicadorSelecionado = (Indicador)CboIndicador.SelectedItem;
-        if (indicadorSelecionado.Id == Indicador_Id.Todos)
+        if (indicadorSelecionado.Id == Indicador_Id.Invalid)
         {
             MessageBox.Show("Selecione um indicador para exibir o gráfico.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             return;

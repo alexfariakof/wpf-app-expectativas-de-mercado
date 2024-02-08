@@ -39,10 +39,7 @@ namespace Expectativas_de_Mercado.Migrations.Migrations
                     b.Property<DateTime?>("DataReferencia")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IndicadorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IndicadorId1")
+                    b.Property<int?>("IndicadorId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Maximo")
@@ -61,8 +58,6 @@ namespace Expectativas_de_Mercado.Migrations.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IndicadorId");
-
-                    b.HasIndex("IndicadorId1");
 
                     b.ToTable("ExpectativasMercado", (string)null);
                 });
@@ -106,15 +101,7 @@ namespace Expectativas_de_Mercado.Migrations.Migrations
                 {
                     b.HasOne("Expectativas_de_Mercado.Model.Core.Indicador", null)
                         .WithMany("ExpectativasMercados")
-                        .HasForeignKey("IndicadorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Expectativas_de_Mercado.Model.Core.Indicador", "Indicador")
-                        .WithMany()
-                        .HasForeignKey("IndicadorId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IndicadorId");
 
                     b.OwnsOne("Expectativas_de_Mercado.Model.ValueObjects.DesvioPadrao", "DesvioPadrao", b1 =>
                         {
@@ -169,8 +156,6 @@ namespace Expectativas_de_Mercado.Migrations.Migrations
 
                     b.Navigation("DesvioPadrao")
                         .IsRequired();
-
-                    b.Navigation("Indicador");
 
                     b.Navigation("Media")
                         .IsRequired();

@@ -22,7 +22,7 @@ public class IndicadorTests
         var indicador = new Indicador();
 
         // Act & Assert
-        Assert.Equal(Indicador_Id.Todos, indicador.Id);
+        Assert.Equal(Indicador_Id.Invalid, indicador.Id);
         Assert.Equal(string.Empty, indicador.Descricao);
         Assert.NotNull(indicador.ExpectativasMercados);
         Assert.Empty(indicador.ExpectativasMercados);

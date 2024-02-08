@@ -5,7 +5,7 @@ namespace Expectativas_de_Mercado.Model.Core;
 public enum Indicador_Id
 {
     [Description("Nenhum Selecionado")]
-    Todos = 0, 
+    Invalid = 0, 
 
     [Description("IPCA")]
     IPCA = 1,
