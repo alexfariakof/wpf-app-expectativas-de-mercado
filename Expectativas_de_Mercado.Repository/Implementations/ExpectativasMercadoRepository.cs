@@ -9,10 +9,10 @@ public class ExpectativasMercadoRepository : IExpectativasMercadoRepository
 {
     private readonly RegisterContext _context;
     private DbSet<ExpectativasMercado> dataSet;
-    public ExpectativasMercadoRepository(RegisterContext context)
+    public ExpectativasMercadoRepository()
     {
-        _context = context;
-        dataSet = context.Set<ExpectativasMercado>();
+        _context = RegisterContext.Instance;
+        dataSet = _context.Set<ExpectativasMercado>();
     }
     public bool Exists(DateTime dtInicial, DateTime dtFinal)
     {

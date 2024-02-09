@@ -1,13 +1,13 @@
-﻿using System.Windows;
+﻿using Expectativas_de_Mercado.ViewModel;
+using System.Windows;
 
 namespace Expectativas_de_Mercado.WPF.View;
 public partial class SalvarPesquisaDialog : Window
 {
-    public string Descricao { get; private set; }
+    private PesquisaViewModel viewModel;
     public SalvarPesquisaDialog()
     {
         InitializeComponent();
-        Descricao = String.Empty;
     }
     private void btnConfirm_Click(object sender, RoutedEventArgs e)
     {
@@ -16,7 +16,7 @@ public partial class SalvarPesquisaDialog : Window
             MessageBox.Show("Entre com uma descrição para armazenar a pesquisa.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
-        Descricao = txtDescricao.Text;
+        //Descricao = txtDescricao.Text;
         DialogResult = true;
     }
     private void btnCancel_Click(object sender, RoutedEventArgs e)

@@ -139,7 +139,7 @@ public partial class MainWindow : Window
         SalvarPesquisaDialog inputDialog = new SalvarPesquisaDialog();
         if (inputDialog.ShowDialog() == true)
         {
-            string descricao = inputDialog.Descricao;
+            MessageBox.Show($"Pesquisa armazenada com sucesso.", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 

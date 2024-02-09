@@ -8,10 +8,10 @@ public class IdicadorRepository: IIndicadorRepository
 {
     private readonly RegisterContext _context;
     private DbSet<Indicador> dataSet;
-    public IdicadorRepository(RegisterContext context)
+    public IdicadorRepository()
     {
-        _context = context;
-        dataSet = context.Set<Indicador>();
+        _context = RegisterContext.Instance;
+        dataSet = _context.Set<Indicador>();
     }
 
     public List<Indicador> GetAll()

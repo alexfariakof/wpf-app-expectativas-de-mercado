@@ -8,10 +8,10 @@ public class PesquisaRepository : IPesquisaRepository
 {
     private readonly RegisterContext _context;
     private DbSet<Pesquisa> dataSet;
-    public PesquisaRepository(RegisterContext context)
+    public PesquisaRepository()
     {
-        _context = context;
-        dataSet = context.Set<Pesquisa>();
+        _context = RegisterContext.Instance;
+        dataSet = _context.Set<Pesquisa>();
     }
     public List<Pesquisa> GetAll()
     {
