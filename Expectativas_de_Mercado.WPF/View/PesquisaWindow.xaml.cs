@@ -26,7 +26,6 @@ public partial class PesquisaWindow : Window
         {
             expectativasMercados = viewModel.GetExpectativasMercados(row.Id);
             DialogResult = true;
-            //MessageBox.Show($"Você clicou duas vezes na linha com o ID {row.Id} e Descrição {row.Descricao}");
         }
     }
 }
