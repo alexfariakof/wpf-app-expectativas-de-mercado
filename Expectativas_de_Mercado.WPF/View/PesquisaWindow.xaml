@@ -1,0 +1,34 @@
+﻿<Window x:Class="Expectativas_de_Mercado.WPF.View.PesquisaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Expectativas_de_Mercado.WPF.View"
+        xmlns:ViewModel="clr-namespace:Expectativas_de_Mercado.ViewModel;assembly=Expectativas_de_Mercado.ViewModel" 
+        mc:Ignorable="d"
+        Title="Pesquisas Arnazenadas" Height="450" MinWidth="700">
+    <Grid>
+        <DataGrid x:Name="DgPesquisas" 
+            Margin="2,2,2,4"                   
+            Width="Auto" 
+            MinHeight="320"
+            ItemsSource="{Binding Pesquisas}" 
+            AutoGenerateColumns="False"             
+            ColumnWidth="Auto"
+            Grid.Row="2" 
+            Grid.ColumnSpan="2"
+            HorizontalScrollBarVisibility="Disabled" 
+            IsReadOnly="True" >
+            <DataGrid.DataContext>
+                <ViewModel:PesquisaViewModel />
+            </DataGrid.DataContext>
+            <DataGrid.Columns  >
+                <DataGridTextColumn Header="Indicador" Binding="{Binding Indicador.Descricao}" />
+                <DataGridTextColumn Header="Pesquisado" Binding="{Binding Data, StringFormat={}{0:dd/MM/yyyy}}" />                
+                <DataGridTextColumn Header="Período Inicial" Binding="{Binding PeriodoInicial, StringFormat={}{0:dd/MM/yyyy}}" />
+                <DataGridTextColumn Header="Período Final" Binding="{Binding PeriodoFinal, StringFormat={}{0:dd/MM/yyyy}}" />
+                <DataGridTextColumn Header="Descrição" Binding="{Binding Descricao}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
