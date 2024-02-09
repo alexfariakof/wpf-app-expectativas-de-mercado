@@ -93,11 +93,30 @@
                 Grid.Column="1" 
                 Grid.RowSpan="2" />
         <Button x:Name="BtnExportar" 
-                Content="Exportar"
+                Content="Exportar Excel"
                 Margin="230,0,0,8"                
                 Height="32"       
-                Width="100" 
+                Width="120" 
                 Background="Green"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"                     
+                Grid.Column="1" 
+                Grid.RowSpan="2"  />
+        <Button x:Name="BtnSalvar" 
+                Content="Salvar"
+                Margin="360,0,0,8"                
+                Height="32"       
+                Width="86" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"                     
+                Grid.Column="1" 
+                Grid.RowSpan="2"  />
+        <Button x:Name="BtnRecuperar" 
+                Content="Recuperar"
+                Margin="454,0,0,8"                
+                Height="32"       
+                Width="104" 
+                Background="Blue"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"                     
                 Grid.Column="1" 
@@ -111,7 +130,8 @@
             ColumnWidth="Auto"
             Grid.Row="2" 
             Grid.ColumnSpan="2"
-            HorizontalScrollBarVisibility="Disabled" >
+            HorizontalScrollBarVisibility="Disabled"
+            IsReadOnly="True">
             <DataGrid.DataContext>
                 <ViewModel:ExpectativasMercadoMensalViewModel/>
             </DataGrid.DataContext>

@@ -1,6 +1,8 @@
-﻿using Expectativas_de_Mercado.Model.Core;
+﻿using Expectativas_de_Mercado.Model.Aggregates;
+using Expectativas_de_Mercado.Model.Core;
 using Expectativas_de_Mercado.ViewModel;
 using Expectativas_de_Mercado.WPF.View;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -21,8 +23,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        DpInicio.SelectedDate = DateTime.Now.AddMonths(-1);
-        DpFim.SelectedDate = DateTime.Now;
+        this.DpInicio.SelectedDate = DateTime.Now.AddMonths(-1);
+        this.DpFim.SelectedDate = DateTime.Now;
         this.Width = this.MinWidth;
         this.viewModel = new ExpectativasMercadoMensalViewModel();
         this.DgExpectativaMercadoMensal.DataContext = viewModel;
@@ -30,6 +32,8 @@ public partial class MainWindow : Window
         this.BtnGrafico.Click += this.BtnGrafico_Click;
         this.CboIndicador.SelectionChanged += this.CboIndicador_SelectionChanged;
         this.BtnExportar.Click += this.BtnExportar_Click;
+        this.BtnSalvar.Click += this.BtnSalvar_Click;
+        this.BtnRecuperar.Click += this.BtnRecuperarPesquisa_Click;
     }
 
     /// <summary>
@@ -128,4 +132,31 @@ public partial class MainWindow : Window
         this.viewModel = new ExpectativasMercadoMensalViewModel();
         this.DgExpectativaMercadoMensal.DataContext = viewModel;
     }
+
+    /// <summary>
+    /// Manipula a uma caixa de dialogo retornado a descrição preenchida.
+    /// </summary>
+    private void BtnSalvar_Click(object sender, RoutedEventArgs e)
+    {
+        SalvarPesquisaDialog inputDialog = new SalvarPesquisaDialog((Indicador)CboIndicador.SelectedItem, DpInicio.SelectedDate.Value, DpFim.SelectedDate.Value, viewModel.ExpectativasMercadoMensais.ToList());
+        if (inputDialog.ShowDialog() == true)
+        {
+            MessageBox.Show($"Pesquisa armazenada com sucesso.", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+    }
+
+    /// <summary>
+    /// Manipula a uma caixa de dialogo com as pesquisas armazenadas.
+    /// </summary>
+    private void BtnRecuperarPesquisa_Click(object sender, RoutedEventArgs e)
+    {
+        PesquisaWindow inputDialog = new PesquisaWindow();
+        if (inputDialog.ShowDialog() == true)
+        {
+            this.viewModel = new ExpectativasMercadoMensalViewModel();
+            viewModel.ExpectativasMercadoMensais = new ObservableCollection<ExpectativasMercado>(inputDialog.expectativasMercados);
+            this.DgExpectativaMercadoMensal.DataContext = viewModel;
+        }
+    }
+
 }
