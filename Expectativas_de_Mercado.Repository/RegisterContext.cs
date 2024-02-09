@@ -28,6 +28,11 @@ namespace Repository
         public DbSet<ExpectativasMercado> ExpectativasMercado { get; set; }
 
         /// <summary>
+        /// Conjunto de dados para a entidade Pesquisa.
+        /// </summary>
+        public DbSet<Pesquisa> Pesquisa{ get; set; }
+
+        /// <summary>
         /// Configuração do modelo de entidade no contexto do banco de dados.
         /// </summary>
         /// <param name="modelBuilder">Construtor de modelo utilizado para configurar as entidades.</param>
@@ -38,6 +43,7 @@ namespace Repository
             // Aplica configurações específicas do mapeamento para as entidades Indicador e ExpectativasMercado.
             modelBuilder.ApplyConfiguration(new IndicadorMap());
             modelBuilder.ApplyConfiguration(new ExpectativasMercadoMap());
+            modelBuilder.ApplyConfiguration(new PesquisaMap());
         }
     }
 }
