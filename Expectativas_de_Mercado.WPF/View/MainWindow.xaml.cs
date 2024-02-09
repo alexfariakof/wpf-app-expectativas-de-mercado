@@ -39,15 +39,12 @@ public partial class MainWindow : Window
     /// <summary>
     /// Manipula o clique no botão de pesquisa, atualizando os dados conforme a seleção.
     /// </summary>
+    /// <param name="sender">O objeto que acionou o evento.</param>
+    /// <param name="e">Os argumentos do evento.</param>
     private void BtnPesquisar_Click(object sender, RoutedEventArgs e)
     {
-        var indicadorSelecionado = (Indicador)CboIndicador.SelectedItem;
-        if (indicadorSelecionado.Id == Indicador_Id.Invalid)
-        {
-            MessageBox.Show("Selecione um indicador para realizar a pesquisa.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-            return;
-        }
-        this.viewModel = new ExpectativasMercadoMensalViewModel(indicadorSelecionado, DpInicio.SelectedDate.Value, DpFim.SelectedDate.Value);
+        if (!IsIndicadorValid()) return;
+        this.viewModel = new ExpectativasMercadoMensalViewModel((Indicador)CboIndicador.SelectedItem, DpInicio.SelectedDate.Value, DpFim.SelectedDate.Value);
         this.DgExpectativaMercadoMensal.DataContext = viewModel;
     }
 
@@ -56,17 +53,14 @@ public partial class MainWindow : Window
     /// </summary>
     private void BtnGrafico_Click(object sender, RoutedEventArgs e)
     {
-        var indicadorSelecionado = (Indicador)CboIndicador.SelectedItem;
-        if (indicadorSelecionado.Id == Indicador_Id.Invalid)
-        {
-            MessageBox.Show("Selecione um indicador para exibir o gráfico.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-            return;
-        }
+        if (!IsIndicadorValid()) return;
+        if (!IsViewModelValid()) return;
+
         Grafico page = new Grafico();
         Window window = new Window
         {
             Content = page,  
-            Title = "Gráfico Expectativas Mensais " + indicadorSelecionado.Descricao
+            Title = "Gráfico Expectativas Mensais " + ((Indicador)CboIndicador.SelectedItem).Descricao
         };
 
         page.ShowGrafico(this.viewModel);
@@ -74,25 +68,23 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// Manipula o clique no botão de exportar, exportando os dados para um arquivo CSV do indicador selecionado.
+    /// Manipula o evento de clique no botão "BtnExportar".
+    /// Exporta os dados do ViewModel para um arquivo CSV.
     /// </summary>
+    /// <param name="sender">O objeto que acionou o evento.</param>
+    /// <param name="e">Os argumentos do evento.</param>
     private void BtnExportar_Click(object sender, RoutedEventArgs e)
     {
         var indicadorSelecionado = (Indicador)CboIndicador.SelectedItem;
-
         var formattedDtInicial = DpInicio.SelectedDate.Value.ToString("yyyyMMdd");
         var formattedDtFinal = DpFim.SelectedDate.Value.ToString("yyyyMMdd");
-
-        if (viewModel.ExpectativasMercadoMensais == null || viewModel.ExpectativasMercadoMensais.Count == 0)
-        {
-            MessageBox.Show("Não há dados para exportar.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-            return;
-        }
+                
+        if (!IsViewModelValid()) return;
 
         var saveFileDialog = new Microsoft.Win32.SaveFileDialog
         {
             Filter = "Arquivo CSV (*.csv)|*.csv",
-            FileName = $"{indicadorSelecionado.Descricao}_{formattedDtInicial}_{formattedDtFinal}" 
+            FileName = $"{indicadorSelecionado.Descricao}_{formattedDtInicial}_{formattedDtFinal}"
         };
 
         if (saveFileDialog.ShowDialog() == true)
@@ -105,7 +97,7 @@ public partial class MainWindow : Window
                         streamWriter.WriteLine("Indicador;Data;Reunião;Média;Mediana;Desvio Padrão;Mínimo;Máximo;Número de Respondentes;Base de Cálculo");
                     else
                         streamWriter.WriteLine("Indicador;Data;Data Referência;Média;Mediana;Desvio Padrão;Mínimo;Máximo;Número de Respondentes;Base de Cálculo");
-
+                                        
                     foreach (var item in viewModel.ExpectativasMercadoMensais)
                     {
                         if (indicadorSelecionado.Id == Indicador_Id.Selic)
@@ -125,8 +117,10 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// Manipula a alteração na seleção do ComboBox de indicadores, reiniciando os dados.
+    /// Manipula o evento de alteração de seleção no ComboBox "CboIndicador".
     /// </summary>
+    /// <param name="sender">O objeto que acionou o evento.</param>
+    /// <param name="e">Os argumentos do evento.</param>
     private void CboIndicador_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
     {
         this.viewModel = new ExpectativasMercadoMensalViewModel();
@@ -134,29 +128,74 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// Manipula a uma caixa de dialogo retornado a descrição preenchida.
+    /// Manipula o evento de clique do botão "Salvar", exibindo uma caixa de diálogo para salvar a pesquisa.
     /// </summary>
+    /// <param name="sender">O objeto que acionou o evento.</param>
+    /// <param name="e">Os argumentos do evento.</param>
     private void BtnSalvar_Click(object sender, RoutedEventArgs e)
     {
-        SalvarPesquisaDialog inputDialog = new SalvarPesquisaDialog((Indicador)CboIndicador.SelectedItem, DpInicio.SelectedDate.Value, DpFim.SelectedDate.Value, viewModel.ExpectativasMercadoMensais.ToList());
-        if (inputDialog.ShowDialog() == true)
+        if (!IsViewModelValid()) return;
+
+        SalvarPesquisaDialog salvarPesquisaDialog = new SalvarPesquisaDialog(
+            (Indicador)CboIndicador.SelectedItem,
+            DpInicio.SelectedDate.Value,
+            DpFim.SelectedDate.Value,
+            viewModel.ExpectativasMercadoMensais.ToList());
+
+        if (salvarPesquisaDialog.ShowDialog() == true)
         {
             MessageBox.Show($"Pesquisa armazenada com sucesso.", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 
     /// <summary>
-    /// Manipula a uma caixa de dialogo com as pesquisas armazenadas.
+    /// Manipula o evento de clique do botão "Recuperar Pesquisa", exibindo uma janela de pesquisa.
     /// </summary>
+    /// <param name="sender">O objeto que acionou o evento.</param>
+    /// <param name="e">Os argumentos do evento.</param>
     private void BtnRecuperarPesquisa_Click(object sender, RoutedEventArgs e)
     {
-        PesquisaWindow inputDialog = new PesquisaWindow();
-        if (inputDialog.ShowDialog() == true)
+        PesquisaWindow pesquisaWindow = new PesquisaWindow();
+
+        if (pesquisaWindow.ShowDialog() == true)
         {
             this.viewModel = new ExpectativasMercadoMensalViewModel();
-            viewModel.ExpectativasMercadoMensais = new ObservableCollection<ExpectativasMercado>(inputDialog.expectativasMercados);
+            viewModel.ExpectativasMercadoMensais = new ObservableCollection<ExpectativasMercado>(pesquisaWindow.expectativasMercados);
             this.DgExpectativaMercadoMensal.DataContext = viewModel;
         }
     }
 
+    /// <summary>
+    /// Verifica se existe um indicador selecionado.
+    /// </summary>
+    /// <returns>
+    /// Retorna verdadeiro se a Combobox Indicador contiver
+    /// um indicador válido caso contrário, exibe um aviso e retorna falso.
+    /// </returns>
+    private bool IsIndicadorValid()
+    {
+        var indicadorSelecionado = (Indicador)CboIndicador.SelectedItem;
+        if (indicadorSelecionado.Id == Indicador_Id.Invalid)
+        {
+            MessageBox.Show("Selecione um indicador.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return false;
+        }
+        return true;
+    }
+
+    /// <summary>
+    /// Verifica se o DataContext do DataGrid contém dados válidos.
+    /// </summary>
+    /// <returns>
+    /// Retorna verdadeiro se o DataContext do DataGrid contiver dadoscaso contrário, exibe um aviso e retorna falso.
+    /// </returns>
+    private bool IsViewModelValid()
+    {
+        if (viewModel.ExpectativasMercadoMensais == null || viewModel.ExpectativasMercadoMensais.Count == 0)
+        {
+            MessageBox.Show("Não há nenhum resultado de pesquisa para realizar a operação.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return false;
+        }
+        return true;
+    }
 }

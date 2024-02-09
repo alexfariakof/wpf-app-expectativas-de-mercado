@@ -22,7 +22,10 @@ public class PesquisaRepository : IPesquisaRepository
     {
         try
         {
-            return dsPesquisa.ToList();
+            var pesquisas = dsPesquisa.ToList();
+            foreach (var item in pesquisas)
+                item.Indicador = dsIndicador.Where(i => i.Id.Equals(item.IndicadorId)).First();
+            return pesquisas;
         }
         catch
         {
@@ -48,7 +51,10 @@ public class PesquisaRepository : IPesquisaRepository
             pesquisa.Indicador = dsIndicador.Where(i => i == pesquisa.Indicador).First();
             dsPesquisa.Add(pesquisa);
             foreach (var item in pesquisa.ExpectativasMercados)
+            {
                 item.Indicador = pesquisa.Indicador;
+                item.IndicadorId = pesquisa.Indicador.Id;
+            }
             dsExpecativadasMercado.AddRange(pesquisa.ExpectativasMercados);
             _context.SaveChanges();
         }
@@ -82,8 +88,10 @@ public class PesquisaRepository : IPesquisaRepository
     {
         try
         {
-            var teste = dsExpecativadasMercado.Where(prop => prop.PesquisaId.Equals(id));
-            return teste.ToList();
+            var expectativasPesquisadas = dsExpecativadasMercado.Where(prop => prop.PesquisaId.Equals(id)).ToList();
+            foreach (var item in expectativasPesquisadas)
+                item.Indicador = dsIndicador.Where(i => i.Id.Equals(item.IndicadorId)).First();
+            return expectativasPesquisadas;
         }
         catch
         {

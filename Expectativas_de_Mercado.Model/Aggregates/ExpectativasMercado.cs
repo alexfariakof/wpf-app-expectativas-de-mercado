@@ -7,6 +7,7 @@ public class ExpectativasMercado : Base
 {
     [NotMapped]
     public Indicador Indicador { get; set; } = new Indicador();
+    public Indicador_Id IndicadorId { get; set; }
     public Guid PesquisaId {  get; set; }
     public DateTime? Data {  get; set; }
     public DateTime? DataReferencia { get; set; }
