@@ -18,7 +18,7 @@ public enum Indicador_Id
 }
 public class Indicador
 {
-    public  Indicador_Id Id { get; set; }
+    public Indicador_Id Id { get; set; }
 
     private string _descricao = String.Empty;
     public string Descricao
@@ -31,11 +31,28 @@ public class Indicador
     public Indicador(string description) 
     { 
         this._descricao = description;
+        this.Id = GetIdByDescricao(this._descricao);
+
     }
     public Indicador(Indicador_Id indicador)
     {
-        Id = indicador;
-        this._descricao = GetDesciption(indicador);
+        this.Id = indicador;
+        this._descricao = GetDesciption(indicador);       
+    }
+
+    private Indicador_Id GetIdByDescricao(string descricao)
+    {
+        var IndicadorId = Indicador_Id.Invalid;
+
+        foreach (var value in Enum.GetValues(typeof(Indicador_Id)))
+        {
+            if (value.ToString() == descricao)
+            {
+                IndicadorId = (Indicador_Id)value;
+                break;
+            }
+        }
+        return IndicadorId;
     }
     private string GetDesciption(Indicador_Id indicador)
     {

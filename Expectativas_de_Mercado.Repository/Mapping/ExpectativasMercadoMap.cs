@@ -18,23 +18,23 @@ public class ExpectativasMercadoMap : IEntityTypeConfiguration<ExpectativasMerca
 
         builder.OwnsOne<Media>(e => e.Media, c =>
         {
-            c.Property(x => x.Value).HasColumnName("Media").IsRequired();
+            c.Property(x => x.Value).HasColumnName("Media");
         });
 
         builder.OwnsOne<Mediana>(e => e.Mediana, c =>
         {
-            c.Property(x => x.Value).HasColumnName("Mediana").IsRequired();
+            c.Property(x => x.Value).HasColumnName("Mediana");
         });
 
         builder.OwnsOne<DesvioPadrao>(e => e.DesvioPadrao, c =>
         {
-            c.Property(x => x.Value).HasColumnName("DesvioPadrao").IsRequired();
+            c.Property(x => x.Value).HasColumnName("DesvioPadrao");
         });
 
-        builder.Property(x => x.Minimo).IsRequired();
-        builder.Property(x => x.Maximo).IsRequired();
-        builder.Property(x => x.NumeroRespondentes).IsRequired();
-        builder.Property(x => x.BaseCalculo).IsRequired();
+        builder.Property(x => x.Minimo);
+        builder.Property(x => x.Maximo);
+        builder.Property(x => x.NumeroRespondentes);
+        builder.Property(x => x.BaseCalculo);
 
         
     }

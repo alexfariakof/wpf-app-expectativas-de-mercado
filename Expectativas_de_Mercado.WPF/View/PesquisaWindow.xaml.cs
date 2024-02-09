@@ -8,9 +8,11 @@ namespace Expectativas_de_Mercado.WPF.View;
 public partial class PesquisaWindow : Window
 {
     private PesquisaViewModel viewModel;
+    public List<ExpectativasMercado> expectativasMercados = new();
     public PesquisaWindow()
     {
         InitializeComponent();
+        this.Width = this.MinWidth;
         this.DgPesquisas.MouseDoubleClick += DgPesquisas_MouseDoubleClick;
         viewModel = new PesquisaViewModel();
     }
@@ -22,7 +24,9 @@ public partial class PesquisaWindow : Window
 
         if (row != null)
         {
-            MessageBox.Show($"Você clicou duas vezes na linha com o ID {row.Id} e Descrição {row.Descricao}");
+            expectativasMercados = viewModel.GetExpectativasMercados(row.Id);
+            DialogResult = true;
+            //MessageBox.Show($"Você clicou duas vezes na linha com o ID {row.Id} e Descrição {row.Descricao}");
         }
     }
 }

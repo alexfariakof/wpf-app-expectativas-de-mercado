@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Expectativas_de_Mercado.Model.Aggregates;
+using System.Numerics;
+using Expectativas_de_Mercado.Model.Core;
 
 namespace Expectativas_de_Mercado.Repository.Mapping;
 public class PesquisaMap : IEntityTypeConfiguration<Pesquisa>

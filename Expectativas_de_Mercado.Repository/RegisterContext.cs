@@ -8,6 +8,7 @@ namespace Repository;
 /// <summary>
 /// Contexto do banco de dados para o registro de entidades como Indicador e ExpectativasMercado.
 /// </summary>
+#pragma warning disable CS8629 // Nullable value type may be null.
 public class RegisterContext : DbContext
 {
     private static RegisterContext _instance;

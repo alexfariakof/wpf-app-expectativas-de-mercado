@@ -39,6 +39,7 @@ public class ExpectativasMercadoRepository : IExpectativasMercadoRepository
             throw new ArgumentException("ExpectativasMercado_Repositorio_Get");
         }
     }
+
     public ExpectativasMercado Insert(ExpectativasMercado expectativasMercado)
     {
         try

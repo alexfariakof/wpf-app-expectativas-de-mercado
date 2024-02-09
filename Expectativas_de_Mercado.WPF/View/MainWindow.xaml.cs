@@ -1,6 +1,8 @@
-﻿using Expectativas_de_Mercado.Model.Core;
+﻿using Expectativas_de_Mercado.Model.Aggregates;
+using Expectativas_de_Mercado.Model.Core;
 using Expectativas_de_Mercado.ViewModel;
 using Expectativas_de_Mercado.WPF.View;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -136,7 +138,7 @@ public partial class MainWindow : Window
     /// </summary>
     private void BtnSalvar_Click(object sender, RoutedEventArgs e)
     {
-        SalvarPesquisaDialog inputDialog = new SalvarPesquisaDialog();
+        SalvarPesquisaDialog inputDialog = new SalvarPesquisaDialog((Indicador)CboIndicador.SelectedItem, DpInicio.SelectedDate.Value, DpFim.SelectedDate.Value, viewModel.ExpectativasMercadoMensais.ToList());
         if (inputDialog.ShowDialog() == true)
         {
             MessageBox.Show($"Pesquisa armazenada com sucesso.", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -151,7 +153,9 @@ public partial class MainWindow : Window
         PesquisaWindow inputDialog = new PesquisaWindow();
         if (inputDialog.ShowDialog() == true)
         {
-            
+            this.viewModel = new ExpectativasMercadoMensalViewModel();
+            viewModel.ExpectativasMercadoMensais = new ObservableCollection<ExpectativasMercado>(inputDialog.expectativasMercados);
+            this.DgExpectativaMercadoMensal.DataContext = viewModel;
         }
     }
 

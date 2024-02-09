@@ -1,4 +1,5 @@
 ﻿using Expectativas_de_Mercado.Model.Aggregates;
+using Expectativas_de_Mercado.Model.Core;
 using Expectativas_de_Mercado.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Repository;
@@ -7,17 +8,21 @@ namespace Expectativas_de_Mercado.Repository.Implementations;
 public class PesquisaRepository : IPesquisaRepository
 {
     private readonly RegisterContext _context;
-    private DbSet<Pesquisa> dataSet;
+    private DbSet<Indicador> dsIndicador;
+    private DbSet<Pesquisa> dsPesquisa;
+    private DbSet<ExpectativasMercado> dsExpecativadasMercado;
     public PesquisaRepository()
     {
         _context = RegisterContext.Instance;
-        dataSet = _context.Set<Pesquisa>();
-    }
+        dsIndicador = _context.Set<Indicador>();
+        dsPesquisa = _context.Set<Pesquisa>();
+        dsExpecativadasMercado = _context.Set<ExpectativasMercado>();
+}
     public List<Pesquisa> GetAll()
     {
         try
         {
-            return dataSet.ToList();
+            return dsPesquisa.ToList();
         }
         catch
         {
@@ -29,7 +34,7 @@ public class PesquisaRepository : IPesquisaRepository
     {
         try
         {
-            return dataSet.Where(p => p.Id == id).First();
+            return dsPesquisa.Where(p => p.Id == id).First();
         }
         catch
         {
@@ -40,12 +45,16 @@ public class PesquisaRepository : IPesquisaRepository
     {
         try
         {
-            dataSet.Add(pesquisa);
+            pesquisa.Indicador = dsIndicador.Where(i => i == pesquisa.Indicador).First();
+            dsPesquisa.Add(pesquisa);
+            foreach (var item in pesquisa.ExpectativasMercados)
+                item.Indicador = pesquisa.Indicador;
+            dsExpecativadasMercado.AddRange(pesquisa.ExpectativasMercados);
             _context.SaveChanges();
         }
-        catch
+        catch(Exception ex)
         {
-            throw new ArgumentException("Pesquisa_Repositorio_Insert"); ;
+            throw new ArgumentException("Pesquisa_Repositorio_Insert", ex);
         }
         return pesquisa;
     }
@@ -54,7 +63,7 @@ public class PesquisaRepository : IPesquisaRepository
     {
         try
         {
-            var result = dataSet.SingleOrDefault(prop => prop.Id.Equals(pesquisa.Id));
+            var result = dsPesquisa.SingleOrDefault(prop => prop.Id.Equals(pesquisa.Id));
             if (result != null)
             {
                 _context.Remove(result);
@@ -67,5 +76,19 @@ public class PesquisaRepository : IPesquisaRepository
         {
             throw new Exception("Pesquisa_Repositorio_Delete", ex);
         }
+    }
+
+    public List<ExpectativasMercado> GetExpectativasMercadoPesquisadas(Guid id)
+    {
+        try
+        {
+            var teste = dsExpecativadasMercado.Where(prop => prop.PesquisaId.Equals(id));
+            return teste.ToList();
+        }
+        catch
+        {
+            throw new ArgumentException("Pesquisa_Repositorio_GetExpectativasMercadoPesquisadas");
+        }
+
     }
 }

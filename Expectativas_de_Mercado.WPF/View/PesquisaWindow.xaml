@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Expectativas_de_Mercado.WPF.View"
         xmlns:ViewModel="clr-namespace:Expectativas_de_Mercado.ViewModel;assembly=Expectativas_de_Mercado.ViewModel" 
         mc:Ignorable="d"
-        Title="Pesquisas Arnazenadas" Height="450" Width="600" ResizeMode="CanMinimize">
+        Title="Pesquisas Arnazenadas" Height="450" MinWidth="700">
     <Grid>
         <DataGrid x:Name="DgPesquisas" 
             Margin="2,2,2,4"                   
